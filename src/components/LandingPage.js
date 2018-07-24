@@ -15,7 +15,7 @@ class LandingPage extends Component {
                             Bay Area.</em>
                         </p>
 
-                        <NavLink to="/" class="search-button">
+                        <NavLink to="/search" class="search-button">
                             Search
                         </NavLink>
 
