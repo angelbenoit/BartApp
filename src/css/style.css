@@ -1,2 +1,25 @@
-.test {
-  background-color: green; }
+.landing {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; }
+  .landing__header {
+    background-image: linear-gradient(rgba(57, 143, 255, 0.397), rgba(178, 211, 255, 0.445)), url("../images//bart-night.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    min-height: 50vh; }
+    .landing__header--text {
+      background-color: rgba(161, 183, 202, 0.363);
+      width: 50%;
+      margin: 5rem auto;
+      padding: 1rem;
+      word-wrap: break-word;
+      text-align: center;
+      box-shadow: 4px 4px 20px 1px #000000; }
+      .landing__header--text p {
+        font-size: 1.25rem; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #353535; }

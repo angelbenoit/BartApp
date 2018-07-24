@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/index';
 import reduxThunk from 'redux-thunk';
 import './css/style.css';
+import 'materialize-css/dist/css/materialize.min.css';
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
