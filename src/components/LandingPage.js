@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class LandingPage extends Component {
     render() {
-
         return (
             <div className="landing">
                 <div className="landing__header">
@@ -13,8 +13,16 @@ class LandingPage extends Component {
                             bart trains anywhere around the
                             Bay Area.</em>
                         </p>
-                        <a class="light-blue lighten-2 btn">Search</a>
+
+                        <NavLink to="/" class="search-button">
+                            Search
+                        </NavLink>
+
                     </div>
+                </div>
+
+                <div>
+
                 </div>
             </div>
         );

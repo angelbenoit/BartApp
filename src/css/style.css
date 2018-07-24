@@ -3,23 +3,37 @@
   flex-direction: column;
   min-height: 100vh; }
   .landing__header {
-    background-image: linear-gradient(rgba(57, 143, 255, 0.397), rgba(178, 211, 255, 0.445)), url("../images//bart-night.jpg");
+    background-image: linear-gradient(rgba(57, 143, 255, 0.74), rgba(202, 224, 252, 0.61)), url("../images//bart-night.jpg");
     background-size: cover;
+    opacity: .75;
     background-position: center;
     color: white;
     min-height: 50vh; }
     .landing__header--text {
-      background-color: rgba(161, 183, 202, 0.363);
+      border-radius: 5px;
       width: 50%;
       margin: 5rem auto;
-      padding: 1rem;
+      padding: 3rem;
       word-wrap: break-word;
-      text-align: center;
-      box-shadow: 4px 4px 20px 1px #000000; }
+      text-align: center; }
+      .landing__header--text h1 {
+        font-size: 4rem; }
       .landing__header--text p {
-        font-size: 1.25rem; }
+        font-size: 1.5rem; }
+      .landing__header--text .search-button {
+        background-color: #398fff;
+        color: white;
+        font-size: 1.3rem;
+        font-weight: bold;
+        padding: .8rem;
+        border-radius: 5px;
+        transition: 1s; }
+        .landing__header--text .search-button:hover {
+          background-color: white;
+          color: #398fff; }
 
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #353535; }
+  background-color: #2c2c2c;
+  font-family: Arial, Helvetica, sans-serif; }
