@@ -16,10 +16,20 @@
       padding: 3rem;
       word-wrap: break-word;
       text-align: center; }
+      @media only screen and (max-width: 600px) {
+        .landing__header--text {
+          width: 100%; } }
       .landing__header--text h1 {
         font-size: 4rem; }
+        @media only screen and (max-width: 600px) {
+          .landing__header--text h1 {
+            font-size: 2.5rem; } }
       .landing__header--text p {
-        font-size: 1.5rem; }
+        font-size: 1.5rem;
+        padding-bottom: 1rem; }
+        @media only screen and (max-width: 600px) {
+          .landing__header--text p {
+            font-size: 1rem; } }
       .landing__header--text .search-button {
         background-color: #398fff;
         color: white;
@@ -31,6 +41,24 @@
         .landing__header--text .search-button:hover {
           background-color: white;
           color: #398fff; }
+  .landing__info {
+    background-color: #3f444c;
+    color: white;
+    min-height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 8rem; }
+    @media only screen and (max-width: 600px) {
+      .landing__info {
+        flex-direction: column;
+        padding: 3rem; } }
+    .landing__info--section {
+      width: 25%;
+      text-align: center; }
+      @media only screen and (max-width: 600px) {
+        .landing__info--section {
+          width: 100%;
+          padding: 2rem; } }
 
 html, body {
   margin: 0;
