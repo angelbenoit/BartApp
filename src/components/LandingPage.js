@@ -23,7 +23,7 @@ class LandingPage extends Component {
                 </div>
 
                 <div className="landing__info">
-                
+
                         <div className="landing__info--section">
                             <h2><Icon name='clock' size='large' /> Live information</h2>
                             <p>
@@ -31,16 +31,16 @@ class LandingPage extends Component {
                                 trains leaving any station you choose from.
                             </p>
                         </div>
-                        
+
                         <div className="landing__info--section">
                             <h2><Icon name='train' size='large' /> Train Schedules</h2>
                             <p>
                                 Search for schedules for your desired train station.
-                                Simply pick a departure time, arriving station and a 
+                                Simply pick a departure time, arriving station and a
                                 destination.
                             </p>
                         </div>
-                        
+
                         <div className="landing__info--section">
                             <h2><Icon name='warning sign' size='large' /> Alerts</h2>
                             <p>
@@ -49,7 +49,7 @@ class LandingPage extends Component {
                                 and elevator updates.
                             </p>
                         </div>
-                        
+
                 </div>
             </div>
         );
