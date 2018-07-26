@@ -1,6 +1,7 @@
 .searchPage{
     min-height: 100vh;
     color: white;
+    display: flex;
 }
 
 .side-bar{
@@ -35,4 +36,10 @@
             transform: scaleY(.9);
         }
     }
+}
+
+.display{
+    color: #3F444C;
+    min-height: 100vh;
+    width: 80%;
 }

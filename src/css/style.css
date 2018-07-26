@@ -67,7 +67,8 @@ html, body {
 
 .searchPage {
   min-height: 100vh;
-  color: white; }
+  color: white;
+  display: flex; }
 
 .side-bar {
   background-color: #3F444C;
@@ -93,3 +94,8 @@ html, body {
       background-color: #c8c8c8; }
     .side-bar .selection-pick:active {
       transform: scaleY(0.9); }
+
+.display {
+  color: #3F444C;
+  min-height: 100vh;
+  width: 80%; }

@@ -1,5 +1,5 @@
 export const friendOptions = [
-    { text: '12th St. Oakland City Center', value: '12TH' }, { text: '16th St. Mission (SF)', value: '16TH' },
+    { text: '12th St. Oakland City Center', value: '12TH', val2: "test" }, { text: '16th St. Mission (SF)', value: '16TH' },
     { text: '19th St. Oakland', value: '19TH' }, { text: '24th St. Mission (SF)', value: '24TH' },
     { text: 'Antioch', value: 'ANTC' }, { text: 'Ashby (Berkeley)', value: 'ASHB' },
     { text: 'Balboa Park (SF)', value: 'BALB' }, { text: 'Bay Fair (San Leandro)', value: 'BAYF' },
