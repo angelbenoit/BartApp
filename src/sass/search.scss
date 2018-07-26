@@ -1,9 +1,38 @@
 .searchPage{
     min-height: 100vh;
+    color: white;
 }
 
 .side-bar{
-    background-color: green;
+    background-color: #3F444C;
     width: 20%;
     min-height: 100vh;
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .selection{
+        width: 60%;
+        margin-left: 3rem;
+    }
+
+    .selection-pick{
+        background-color: white;
+        color: #3F444C;
+        padding: 1rem;
+        word-wrap: break-word;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 5ms, background-color .5s;
+
+        &:hover{
+            background-color: rgb(200, 200, 200);
+        }
+
+        &:active{
+            transform: scaleY(.9);
+        }
+    }
 }

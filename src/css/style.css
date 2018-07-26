@@ -66,9 +66,30 @@ html, body {
           padding: 2rem; } }
 
 .searchPage {
-  min-height: 100vh; }
+  min-height: 100vh;
+  color: white; }
 
 .side-bar {
-  background-color: green;
+  background-color: #3F444C;
   width: 20%;
-  min-height: 100vh; }
+  min-height: 100vh;
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; }
+  .side-bar .selection {
+    width: 60%;
+    margin-left: 3rem; }
+  .side-bar .selection-pick {
+    background-color: white;
+    color: #3F444C;
+    padding: 1rem;
+    word-wrap: break-word;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 5ms, background-color .5s; }
+    .side-bar .selection-pick:hover {
+      background-color: #c8c8c8; }
+    .side-bar .selection-pick:active {
+      transform: scaleY(0.9); }

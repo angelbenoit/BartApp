@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 import Dropdown from './Dropdown';
 
 class SearchPage extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            live: false,
+            schedule: false
+        }
+    }
     render() {
         return (
             <div className="searchPage">
                 <div className="side-bar">
-                    <div>
-                        <h3>Get live information</h3>
+                    <div className="selection">
+                        <h3 className="selection-pick">Get live information</h3>
                         <p>
                             Pick a train station and you can
                             view all incoming and departing trains
@@ -15,8 +23,8 @@ class SearchPage extends Component {
                         </p>
                     </div>
 
-                    <div>
-                        <h3>View schedule</h3>
+                    <div className="selection">
+                        <h3 className="selection-pick">View schedule</h3>
                         <p>
                             Start by choosing a train station you will
                             arrive in, and choose a destination, then
