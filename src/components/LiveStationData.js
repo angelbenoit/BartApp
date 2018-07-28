@@ -36,25 +36,44 @@ class LiveStationData extends Component {
         console.log(test2)
 
         let sortedList = [];
+        const northBoundTrains = [];
+        const southBoundTrains = [];
 
-        sortedList = test2.map(item => {
-            return (
-                <div className="list-item">
+        test2.map(item => {
+            let data = (
+                <div
+                    className="list-item"
+                >
                     <h4>
                         <Icon name='train' size='large' />
                         { `${item.name} train` }
+
                         {
                             item.minutes === "Leaving" ?
-                            " is leaving" :
-                            ` arrives in ${item.minutes} minute(s)`
+                            <h5 className="leaving-now"> is leaving</h5> :
+                            <h5 className="leaving"> Arrives in {item.minutes} minute(s)</h5>
                         }
+
                     </h4>
-                    <p>{item.length} Car</p>
+                    <p>{item.length} Cars</p>
                     <p>{item.direction}bound</p>
                 </div>
             )
-        })
-        return sortedList;
+            if(item.direction === "South")
+                southBoundTrains.push(data);
+            else
+                northBoundTrains.push(data);
+        });
+
+        const renderedData = (
+            <div>
+                <h1>NorthBound</h1>
+                {northBoundTrains}
+                <h1>SouthBound</h1>
+                {southBoundTrains}
+            </div>
+        )
+        return renderedData;
     }
     render() {
         //const stationName = this.props.liveStation.name;
