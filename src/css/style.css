@@ -74,11 +74,14 @@ html, body {
     color: red; }
 
 .displayList {
-  padding: 1rem;
-  text-align: center; }
+  padding: 1rem; }
 
 .list-item {
-  padding: 1rem; }
+  padding: 1rem;
+  border: 1px solid green;
+  display: flex;
+  flex-direction: column;
+  text-align: center; }
 
 .searchPage {
   min-height: 100vh;

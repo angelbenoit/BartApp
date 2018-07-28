@@ -1,46 +1,58 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Icon } from 'semantic-ui-react'
 
 class LiveStationData extends Component {
 
     getArriving() {
         let arriving = [];
+        let test = [];
+
         if (this.props.live.etd) {
             this.props.live.etd.map(station => {
                 station.estimate.map(train => {
-                    arriving.push(
-                        `${station.destination} ${train.minutes}`
-                    )
+                    test.push({
+                        name: station.destination,
+                        minutes: train.minutes,
+                        color: train.color,
+                        length: train.length,
+                        platform: train.platform,
+                        direction: train.direction
+                    })
                 })
             })
         }
-        arriving.sort(function(a, b){
-            a = a.split(" ");
-            b = b.split(" ");
-            return a[a.length-1] - b[b.length-1]
+
+        test.sort(function (a, b) {
+            return a.minutes - b.minutes;
         });
+        let test2 = [];
+        test.map(item => {
+            if (item.minutes === "Leaving")
+                test2.unshift(item);
+            else
+                test2.push(item);
+        })
+        console.log(test2)
+
         let sortedList = [];
-        arriving.map(item => {
-            item = item.split(" ");
-            const minutes = item[item.length-1];
-            console.log(item)
-            let data = (
+
+        sortedList = test2.map(item => {
+            return (
                 <div className="list-item">
-                    <h3>
-                        {item[0]} {item[1].length > 2 ? item[1]: ""}
+                    <h4>
+                        <Icon name='train' size='large' />
+                        { `${item.name} train` }
                         {
-                            minutes === "Leaving" ?
-                            <span className="leaving-now"> is leaving</span> :
-                            <span className="leaving"> leaving in {item[item.length-1]} minutes</span>
+                            item.minutes === "Leaving" ?
+                            " is leaving" :
+                            ` arrives in ${item.minutes} minute(s)`
                         }
-                    </h3>
+                    </h4>
+                    <p>{item.length} Car</p>
+                    <p>{item.direction}bound</p>
                 </div>
             )
-            if(minutes === "Leaving")
-                sortedList.unshift(data);
-            else
-                sortedList.push(data);
-
         })
         return sortedList;
     }
