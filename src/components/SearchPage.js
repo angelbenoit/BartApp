@@ -11,20 +11,20 @@ class SearchPage extends Component {
         this.state = {
             live: false,
             schedule: false,
-            //stations for getting live information about a station, or 
+            //stations for getting live information about a station, or
             //getting a route schedule with entry station and destination
             entry: "",
             destination: "",
             liveStation: ""
         }
-        
+
         this.userSelection = this.userSelection.bind(this);
         this.renderProperData = this.renderProperData.bind(this);
         this.getLiveStation = this.getLiveStation.bind(this);
         this.getEntry = this.getEntry.bind(this);
         this.getDestination = this.getDestination.bind(this);
     }
-    
+
     userSelection(selection){
         //alert(selection);
         if(selection === "live")
@@ -32,23 +32,23 @@ class SearchPage extends Component {
         else
             this.setState({ live: false, schedule: true, entry: "", destination: "", liveStation: "" });
     }
-    
+
     getLiveStation(stationName){
         //alert(`Calling getLiveStation function, and user picked: ${stationName}`)
         this.setState({ liveStation: stationName });
         this.props.fetchLiveData(stationName);
     }
-    
+
     getEntry(entryStation){
         //alert(`Entry station: ${entryStation}`);
         this.setState({ entry: entryStation });
     }
-    
+
     getDestination(destinationStation){
         //alert(`Destination station: ${destinationStation}`);
         this.setState({ destination: destinationStation });
     }
-    
+
     renderProperData(){
         if(this.state.live)
             return (
@@ -68,13 +68,13 @@ class SearchPage extends Component {
             return (
                 <div>
                     <h3>Schedule</h3>
-                    
+
                     <h4>Arrival Station</h4>
                     <Dropdown
                         type="entry"
                         getEntry={this.getEntry}
                     />
-                    
+
                     <h4>Destination</h4>
                     <Dropdown
                         type="destination"
@@ -83,25 +83,25 @@ class SearchPage extends Component {
                     {
                         (this.state.entry && this.state.destination) ?
                         <p>
-                            Your route from {this.state.entry} to {this.state.destination}: 
+                            Your route from {this.state.entry} to {this.state.destination}:
                         </p>
                         : ""
                     }
                 </div>
             )
     }
-    
+
     render() {
         return (
             <div className="searchPage">
                 <div className="side-bar">
                     <div className="selection">
-                        <h3 
+                        <h4
                             className="selection-pick"
                             onClick={() => this.userSelection("live")}
                         >
                             Get live information
-                        </h3>
+                        </h4>
                         <p>
                             Pick a train station and you can
                             view all incoming and departing trains
@@ -110,12 +110,12 @@ class SearchPage extends Component {
                     </div>
 
                     <div className="selection">
-                        <h3 
+                        <h4
                             className="selection-pick"
                             onClick={() => this.userSelection("schedule")}
                         >
                             View schedule
-                        </h3>
+                        </h4>
                         <p>
                             Start by choosing a train station you will
                             arrive in, and choose a destination, then
@@ -124,7 +124,7 @@ class SearchPage extends Component {
                     </div>
 
                 </div>
-                
+
                 <div className="display">
                     {this.renderProperData()}
                 </div>

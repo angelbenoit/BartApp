@@ -79,19 +79,33 @@ html, body {
 
 .list-item {
   padding: 1rem;
-  padding-bottom: 2rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
-  text-align: center; }
+  text-align: center;
+  width: 25rem; }
+  @media only screen and (max-width: 500px) {
+    .list-item {
+      width: 10rem; } }
 
 .northSouthContainer {
   display: flex;
   justify-content: space-around; }
+  @media only screen and (max-width: 900px) {
+    .northSouthContainer {
+      justify-content: flex-start; } }
+  @media only screen and (max-width: 700px) {
+    .northSouthContainer {
+      flex-direction: column; } }
 
 .searchPage {
   min-height: 100vh;
   color: white;
-  display: flex; }
+  display: flex;
+  background-color: #51565f; }
+  @media only screen and (max-width: 900px) {
+    .searchPage {
+      flex-direction: column; } }
 
 .side-bar {
   background-color: #3F444C;
@@ -102,23 +116,32 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: space-around; }
+  @media only screen and (max-width: 900px) {
+    .side-bar {
+      flex-direction: row;
+      width: 100%;
+      min-height: 20vh; } }
   .side-bar .selection {
-    width: 60%;
-    margin-left: 3rem; }
+    padding: 1rem; }
+    @media only screen and (max-width: 500px) {
+      .side-bar .selection {
+        padding: .5rem; } }
   .side-bar .selection-pick {
     background-color: white;
     color: #3F444C;
     padding: 1rem;
-    word-wrap: break-word;
     border-radius: 5px;
     cursor: pointer;
     transition: transform 5ms, background-color .5s; }
+    @media only screen and (max-width: 500px) {
+      .side-bar .selection-pick {
+        padding: .5rem; } }
     .side-bar .selection-pick:hover {
       background-color: #c8c8c8; }
     .side-bar .selection-pick:active {
       transform: scaleY(0.9); }
 
 .display {
-  color: #3F444C;
+  color: white;
   min-height: 100vh;
   width: 80%; }

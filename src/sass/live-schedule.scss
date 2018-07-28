@@ -15,14 +15,24 @@
 
 .list-item{
     padding: 1rem;
-    padding-bottom: 2rem;
+    margin-bottom: 2rem;
     //border: 1px solid green;
     display: flex;
     flex-direction: column;
     text-align: center;
+    width: 25rem;
+    @media only screen and (max-width: 500px) {
+            width: 10rem;
+    }
 }
 
 .northSouthContainer{
     display: flex;
     justify-content: space-around;
+    @media only screen and (max-width: 900px) {
+        justify-content: flex-start;
+    }
+    @media only screen and (max-width: 700px) {
+            flex-direction: column;
+    }
 }

@@ -43,10 +43,16 @@ class LiveStationData extends Component {
             let data = (
                 <div
                     className="list-item"
-                    style={{'border-top': `5px solid ${item.color}`}}
+                    style={{'border-left': `1rem solid ${item.color}`}}
                 >
                     <h3>
-                        <Icon name='train' size='large' style={{'color': item.color}}/>
+                        <Icon
+                            name='train'
+                            size='large'
+                            style={{
+                                'color': item.color,
+                                'text-shadow': '1px 1px 3px black'
+                            }}/>
                         { `${item.name} train` }
                     </h3>
                     <p>
@@ -56,7 +62,11 @@ class LiveStationData extends Component {
                             <h5 className="leaving"> Arrives in {item.minutes} minute(s)</h5>
                         }
                     </p>
-                    <p>{item.length} Cars</p>
+                    <div>
+                        <p>{item.length} Cars</p>
+                        <p>On platform {item.platform}</p>
+                    </div>
+
                 </div>
             )
             if(item.direction === "South")
