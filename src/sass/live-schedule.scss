@@ -22,7 +22,7 @@
     text-align: center;
     width: 25rem;
     @media only screen and (max-width: 500px) {
-            width: 10rem;
+            width: 15rem;
     }
 }
 
@@ -35,4 +35,8 @@
     @media only screen and (max-width: 700px) {
             flex-direction: column;
     }
+}
+
+.direction{
+    text-decoration: underline;
 }

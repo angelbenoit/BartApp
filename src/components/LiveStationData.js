@@ -78,11 +78,11 @@ class LiveStationData extends Component {
         const renderedData = (
             <div className="northSouthContainer">
                 <div>
-                    <h1>NorthBound</h1>
+                    <h1 className="direction">NorthBound</h1>
                     {northBoundTrains}
                 </div>
                 <div>
-                    <h1>SouthBound</h1>
+                    <h1 className="direction">SouthBound</h1>
                     {southBoundTrains}
                 </div>
             </div>
@@ -95,7 +95,7 @@ class LiveStationData extends Component {
         console.log(this.getArriving());
         return (
             <div className="displayList">
-                <h2>Trains arriving in {this.props.live.name}</h2>
+                <h2>Trains arriving in <em>{this.props.live.name}</em></h2>
                 <div>
                     {this.getArriving()}
                 </div>

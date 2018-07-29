@@ -86,7 +86,7 @@ html, body {
   width: 25rem; }
   @media only screen and (max-width: 500px) {
     .list-item {
-      width: 10rem; } }
+      width: 15rem; } }
 
 .northSouthContainer {
   display: flex;
@@ -97,6 +97,9 @@ html, body {
   @media only screen and (max-width: 700px) {
     .northSouthContainer {
       flex-direction: column; } }
+
+.direction {
+  text-decoration: underline; }
 
 .searchPage {
   min-height: 100vh;
@@ -115,17 +118,18 @@ html, body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around; }
+  justify-content: flex-start; }
   @media only screen and (max-width: 900px) {
     .side-bar {
       flex-direction: row;
       width: 100%;
       min-height: 20vh; } }
   .side-bar .selection {
-    padding: 1rem; }
+    padding: 1.5rem;
+    padding-bottom: 4rem; }
     @media only screen and (max-width: 500px) {
       .side-bar .selection {
-        padding: .5rem; } }
+        padding: 1rem; } }
   .side-bar .selection-pick {
     background-color: white;
     color: #3F444C;
@@ -135,7 +139,7 @@ html, body {
     transition: transform 5ms, background-color .5s; }
     @media only screen and (max-width: 500px) {
       .side-bar .selection-pick {
-        padding: .5rem; } }
+        padding: 1rem; } }
     .side-bar .selection-pick:hover {
       background-color: #c8c8c8; }
     .side-bar .selection-pick:active {

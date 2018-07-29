@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Dropdown from './Dropdown';
 import LiveStationData from './LiveStationData';
+import RouteSchedule from './RouteSchedule';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -40,20 +41,31 @@ class SearchPage extends Component {
     }
 
     getEntry(entryStation){
-        //alert(`Entry station: ${entryStation}`);
-        this.setState({ entry: entryStation });
+        if(entryStation === this.state.destination)
+            alert("Entry and destination must be different");
+        else
+            this.setState({ entry: entryStation });
     }
 
     getDestination(destinationStation){
-        //alert(`Destination station: ${destinationStation}`);
-        this.setState({ destination: destinationStation });
+        if(destinationStation === this.state.entry)
+            alert("Entry and destination must be different");
+        else
+            this.setState({ destination: destinationStation });
+    }
+
+    getRoute(){
+        if(this.state.entry && this.state.destination){
+            this.props.fetchRoute(this.state.entry, this.state.destination);
+            return <RouteSchedule origin={this.state.entry} destination={this.state.destination}/>
+        }
     }
 
     renderProperData(){
         if(this.state.live)
             return (
                 <div>
-                    <h3>Live</h3>
+                    <h3>Live Schedule</h3>
                     <Dropdown
                         type="live"
                         getLiveStation={this.getLiveStation}
@@ -81,11 +93,7 @@ class SearchPage extends Component {
                         getDestination={this.getDestination}
                     />
                     {
-                        (this.state.entry && this.state.destination) ?
-                        <p>
-                            Your route from {this.state.entry} to {this.state.destination}:
-                        </p>
-                        : ""
+                        this.getRoute()
                     }
                 </div>
             )
