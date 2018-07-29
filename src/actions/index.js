@@ -20,3 +20,14 @@ export const fetchStationList = () => async (dispatch) => {
     //console.log(res.data.root.stations.station)
     dispatch({type: FETCH_STATION_LIST, payload: res.data.root.stations.station });
 };
+
+export const fetchRouteColor = (routeNumber) => async (dispatch) => {
+    const url = `https://api.bart.gov/api/route.aspx?cmd=routes&key=MW9S-E7SL-26DU-VV8V&json=y`;
+    const res = await axios.get(url);
+    //console.log(res.data.root.routes.route)
+    const color = res.data.root.routes.route.filter(item => {
+        return routeNumber === item.routeID;
+    })
+    console.log(color[0]);
+    //return color
+};

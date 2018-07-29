@@ -9,28 +9,47 @@ class RouteSchedule extends Component {
 
     renderRoute(){
         const stations = this.props.stationList;
-        let origin = this.props.origin;
-        let destination = this.props.destination;
+        let origin, destination, originName, destinationName;
+        console.log(this.props.routeList)
 
-        const fullNames = stations.filter(function (station){
-            return station.abbr === origin || station.abbr === destination;
-        });
+        const route = [];
 
-        console.log(fullNames)
+        this.props.routeList.map(item => {
+            item.leg.map(test => {
+                //this.props.fetchRouteColor(test['@line']);
+                origin = stations.filter(function (station){
+                    return station.abbr === test['@origin'];
+                });
+                destination = stations.filter(function (station){
+                    return station.abbr === test['@destination'];
+                });
+                if(origin[0] && destination[0]){
+                    originName = origin[0].name ;
+                    destinationName = destination[0].name;
+                }
 
-        const route = this.props.routeList.map(item => {
-            if(item.leg.length === 1){
-                return(
+                route.push(
                     <div>
+                        <h2>{test['@transfercode'] ? "Transfer Route" : ""}</h2>
                         <h3>
-                            {item['@origin']} arriving at {item.leg[0]['@origTimeMin']}
-                            and arriving at {item['@destination']} at {item.leg[0]['@destTimeMin']}
+                            Train arriving at {originName} Station at {`${test['@origTimeMin']} `}
+                            and arriving at {destinationName} Station at {test['@destTimeMin']}
                         </h3>
                     </div>
                 )
-            }
+            })
+            // if(item.leg.length === 1){
+            //     // return(
+            //     //     <div>
+            //     //         <h3>
+            //     //             {originName} arriving at {`${item.leg[0]['@origTimeMin']} `}
+            //     //             and arriving at {destinationName} at {item.leg[0]['@destTimeMin']}
+            //     //         </h3>
+            //     //     </div>
+            //     // )
+            // }
         });
-
+        console.log(route)
         return route;
     }
 
