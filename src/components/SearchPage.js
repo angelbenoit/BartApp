@@ -27,24 +27,38 @@ class SearchPage extends Component {
     }
 
     componentWillMount(){
+        //get the list of stations  and all the current routes list saved to the store
+        //as soon as search page loads
         this.props.fetchStationList();
         this.props.fetchArrivingData();
     }
 
     userSelection(selection){
-        //alert(selection);
+        //if user selects to view live incoming trains at a specific station,
+        //set live to true and reset everything else
         if(selection === "live")
             this.setState({ live: true, schedule: false, entry: "", destination: "", liveStation: "" });
+
+            //otherwise set schedule to true and reset everything else
         else
             this.setState({ live: false, schedule: true, entry: "", destination: "", liveStation: "" });
     }
 
     getLiveStation(stationName){
-        //alert(`Calling getLiveStation function, and user picked: ${stationName}`)
+        /*
+            This function is passed in the LiveStationData component
+            and when user changes station, the station abbreviation gets passed
+            in here and gets set to state, also api function is called to get
+            all the live data from that station
+        */
         this.setState({ liveStation: stationName });
         this.props.fetchLiveData(stationName);
     }
 
+    /*
+        getEntry and getDestination saves the origin/destination to the state
+        and validates that they're not the same
+    */
     getEntry(entryStation){
         if(entryStation === this.state.destination)
             alert("Entry and destination must be different");
@@ -59,13 +73,24 @@ class SearchPage extends Component {
             this.setState({ destination: destinationStation });
     }
 
+    //getRoute fetches the RouteSchedule component and passes in the origin/destination
+    //also calls the api function to get the route data
     getRoute(){
+        //will only work if an entry and destination has been picked
         if(this.state.entry && this.state.destination){
             this.props.fetchRoute(this.state.entry, this.state.destination);
             return <RouteSchedule origin={this.state.entry} destination={this.state.destination}/>
         }
     }
 
+    /*
+        renderProperData will either render the live station data or the
+        route data. If checks the state to see if live is true and will
+        return the dropdown with the LiveStation component if is true.
+        Will also check to see if schedule (origin -> destination) is true
+        and will return the route component using the getRoute function.
+        If neither are picked, nothing will be displayed
+     */
     renderProperData(){
         if(this.state.live)
             return (
@@ -75,7 +100,9 @@ class SearchPage extends Component {
                         type="live"
                         getLiveStation={this.getLiveStation}
                     />
+
                     {
+                        //component will only display if user picked a station
                         this.state.liveStation ?
                         <LiveStationData /> : ""
                     }
