@@ -26,6 +26,11 @@ class SearchPage extends Component {
         this.getDestination = this.getDestination.bind(this);
     }
 
+    componentWillMount(){
+        this.props.fetchStationList();
+        this.props.fetchArrivingData();
+    }
+
     userSelection(selection){
         //alert(selection);
         if(selection === "live")
