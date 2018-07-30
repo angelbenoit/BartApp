@@ -74,8 +74,10 @@ class RouteSchedule extends Component {
 
                 currentRoute.push(
                     <div className="currentRoute" style={{'border-left': `10px solid ${arrivingTrain[1]}`}}>
-                        <em>{arrivingTrain[0]}</em> train arriving at <em>{originName}</em> Station at {`${test['@origTimeMin']} `}
-                        and will arrive at <em>{destinationName}</em> Station at {test['@destTimeMin']}
+                        <span className="stationName"><em>{arrivingTrain[0]}</em></span> train arriving at &nbsp;
+                        <span className="stationName"><em>{originName}</em></span> Station at {`${test['@origTimeMin']} `}
+                        and will arrive at <span className="stationName"><em>{destinationName}</em></span> Station at
+                        &nbsp;{test['@destTimeMin']}
                     </div>
                 );
             })
