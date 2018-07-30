@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_LIVE, FETCH_ROUTE, FETCH_STATION_LIST } from './types';
+import { FETCH_LIVE, FETCH_ROUTE, FETCH_STATION_LIST, FETCH_CURRENT_ROUTE_DATA } from './types';
 
 export const fetchLiveData = (station) => async (dispatch) => {
     const url = `https://api.bart.gov/api/etd.aspx?cmd=etd&orig=${station}&key=MW9S-E7SL-26DU-VV8V&json=y`;
@@ -10,7 +10,7 @@ export const fetchLiveData = (station) => async (dispatch) => {
 export const fetchRoute = (origin, destination) => async (dispatch) => {
     const url = `https://api.bart.gov/api/sched.aspx?cmd=depart&orig=${origin}&dest=${destination}&b=0&a=4&key=MW9S-E7SL-26DU-VV8V&json=y`;
     const res = await axios.get(url);
-    //console.log(res.data.root.schedule.request.trip)
+    console.log(res.data.root)
     dispatch({type: FETCH_ROUTE, payload: res.data.root.schedule.request.trip });
 };
 
@@ -21,13 +21,9 @@ export const fetchStationList = () => async (dispatch) => {
     dispatch({type: FETCH_STATION_LIST, payload: res.data.root.stations.station });
 };
 
-export const fetchRouteColor = (routeNumber) => async (dispatch) => {
+export const fetchArrivingData = () => async (dispatch) => {
     const url = `https://api.bart.gov/api/route.aspx?cmd=routes&key=MW9S-E7SL-26DU-VV8V&json=y`;
     const res = await axios.get(url);
-    //console.log(res.data.root.routes.route)
-    const color = res.data.root.routes.route.filter(item => {
-        return routeNumber === item.routeID;
-    })
-    console.log(color[0]);
-    //return color
+
+    dispatch({type: FETCH_CURRENT_ROUTE_DATA, payload: res.data });
 };
