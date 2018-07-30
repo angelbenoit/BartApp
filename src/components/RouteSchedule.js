@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import { Icon } from 'semantic-ui-react'
 import * as actions from '../actions';
 
 class RouteSchedule extends Component {
@@ -73,15 +73,15 @@ class RouteSchedule extends Component {
                     isTransfer = true;
 
                 currentRoute.push(
-                    <h3>
-                        {arrivingTrain[0]} train arriving at {originName} Station at {`${test['@origTimeMin']} `}
-                        and will arrive at {destinationName} Station at {test['@destTimeMin']}
-                    </h3>
+                    <div className="currentRoute" style={{'border-left': `10px solid ${arrivingTrain[1]}`}}>
+                        <em>{arrivingTrain[0]}</em> train arriving at <em>{originName}</em> Station at {`${test['@origTimeMin']} `}
+                        and will arrive at <em>{destinationName}</em> Station at {test['@destTimeMin']}
+                    </div>
                 );
             })
             routeDisplay.push(
-                <div>
-                    <h2>{isTransfer ? "Transfer Route" : ""}</h2>
+                <div className="routeDisplay">
+                    {isTransfer ? <h2><Icon name='warning circle' size='large' /> Transfer Route</h2> : ""}
                     { currentRoute }
                 </div>
             );

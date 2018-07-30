@@ -149,3 +149,9 @@ html, body {
   color: white;
   min-height: 100vh;
   width: 80%; }
+
+.currentRoute {
+  padding: 2rem; }
+
+.routeDisplay {
+  padding: 2rem; }
