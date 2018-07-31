@@ -1,0 +1,38 @@
+.station-data{
+    text-align: center;
+    padding: 5rem;
+}
+
+.bartMap{
+    color: white;
+    font-size: 1.3rem;
+
+    &:hover{
+        color: rgb(163, 174, 184);
+    }
+}
+
+.yelp-list{
+    font-size: 1.3rem;
+    list-style: none;
+}
+
+.yelp-list-item{
+    color: white;
+    padding-bottom: 1rem;
+    transition: all .7s;
+
+    &:hover{
+        color: silver;
+        text-shadow: 4px 4px rgb(0, 0, 0);
+    }
+}
+
+.additional-info{
+    padding-top: 2.5rem;
+}
+
+.intro{
+    font-size: 1.3rem;
+    font-style: italic;
+}
