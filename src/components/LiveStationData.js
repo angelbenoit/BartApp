@@ -6,15 +6,20 @@ class LiveStationData extends Component {
 
     getArriving() {
         let arriving = [];
-        let test = [];
+        //arriving array will hold objects containing information about
+        //the incoming train
 
         if (this.props.live.etd) {
             this.props.live.etd.map(station => {
                 station.estimate.map(train => {
-                    test.push({
+                    //console.log(train)
+                    //will need a nested map because inside inside the
+                    //live.etd only contains the name and the array inside
+                    //the live.etd contains the list of leaving trains without name
+                    arriving.push({
                         name: station.destination,
                         minutes: train.minutes,
-                        color: train.color,
+                        color: train.hexcolor,
                         length: train.length,
                         platform: train.platform,
                         direction: train.direction
@@ -23,23 +28,30 @@ class LiveStationData extends Component {
             })
         }
 
-        test.sort(function (a, b) {
+        //sort the array by the trains that are closest to arriving first
+        arriving.sort(function (a, b) {
             return a.minutes - b.minutes;
         });
-        let test2 = [];
-        test.map(item => {
+        let arrivingSorted = [];
+        //this map pushes all of the arriving trains to be at the start of the
+        //array because the previous sort function only sorts by numbers and
+        //will not sort by strings and trains that are leaving will not contain
+        //a number and will contain "Leaving", so we unshift it to the beginning
+        arriving.map(item => {
             if (item.minutes === "Leaving")
-                test2.unshift(item);
+                arrivingSorted.unshift(item);
             else
-                test2.push(item);
+                arrivingSorted.push(item);
         })
-        console.log(test2)
+        //console.log(arrivingSorted)
 
-        let sortedList = [];
+        //separate the objects into two arrays, one heading north and the other
+        //heading south
         const northBoundTrains = [];
         const southBoundTrains = [];
 
-        test2.map(item => {
+        arrivingSorted.map(item => {
+            //console.log(item)
             let data = (
                 <div
                     className="list-item"
