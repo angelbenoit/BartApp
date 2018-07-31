@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dropdown from './Dropdown';
 import LiveStationData from './LiveStationData';
 import RouteSchedule from './RouteSchedule';
+import StationData from './StationData';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -17,14 +18,17 @@ class SearchPage extends Component {
             //getting a route schedule with entry station and destination
             entry: "",
             destination: "",
-            liveStation: ""
+            liveStation: "",
+            stationName: ""
         }
 
         this.userSelection = this.userSelection.bind(this);
         this.renderProperData = this.renderProperData.bind(this);
+        this.getAdditionalStationInfo = this.getAdditionalStationInfo.bind(this);
         this.getLiveStation = this.getLiveStation.bind(this);
         this.getEntry = this.getEntry.bind(this);
         this.getDestination = this.getDestination.bind(this);
+        this.setStationName = this.setStationName.bind(this);
     }
 
     componentWillMount(){
@@ -38,14 +42,14 @@ class SearchPage extends Component {
         //if user selects to view live incoming trains at a specific station,
         //set live to true and reset everything else
         if(selection === "live")
-            this.setState({ live: true, schedule: false, stationDetail: false, entry: "", destination: "", liveStation: "" });
+            this.setState({ live: true, schedule: false, stationDetail: false, entry: "", destination: "", liveStation: "", stationName: "" });
 
             //otherwise set schedule to true and reset everything else
         else if(selection === "schedule")
-            this.setState({ live: false, schedule: true, stationDetail: false, entry: "", destination: "", liveStation: "" });
+            this.setState({ live: false, schedule: true, stationDetail: false, entry: "", destination: "", liveStation: "", stationName: "" });
 
         else
-            this.setState({ live: false, schedule: false, stationDetail: true, entry: "", destination: "", liveStation: "" });
+            this.setState({ live: false, schedule: false, stationDetail: true, entry: "", destination: "", liveStation: "", stationName: "" });
     }
 
     getLiveStation(stationName){
@@ -84,6 +88,18 @@ class SearchPage extends Component {
         if(this.state.entry && this.state.destination){
             this.props.fetchRoute(this.state.entry, this.state.destination);
             return <RouteSchedule origin={this.state.entry} destination={this.state.destination}/>
+        }
+    }
+
+    //sets name for station picked when user wants to see more information
+    setStationName(name){
+        this.setState({ stationName: name });
+    }
+
+    getAdditionalStationInfo(){
+        if(this.state.stationName){
+            this.props.fetchAdditionalStationInfo(this.state.stationName);
+            return <StationData station={this.state.stationName}/>;
         }
     }
 
@@ -140,7 +156,13 @@ class SearchPage extends Component {
         else if(this.state.stationDetail){
             return(
                 <div>
-                    STATION DETAILS
+                    <Dropdown
+                        type="setStation"
+                        setStation={this.setStationName}
+                    />
+                    {
+                        this.getAdditionalStationInfo()
+                    }
                 </div>
             )
         }
