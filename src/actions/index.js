@@ -12,7 +12,7 @@ export const fetchLiveData = (station) => async (dispatch) => {
 export const fetchRoute = (origin, destination) => async (dispatch) => {
     const url = `https://api.bart.gov/api/sched.aspx?cmd=depart&orig=${origin}&dest=${destination}&b=0&a=4&key=MW9S-E7SL-26DU-VV8V&json=y`;
     const res = await axios.get(url);
-    console.log(res.data.root)
+    //console.log(res.data.root)
     dispatch({type: FETCH_ROUTE, payload: res.data.root.schedule.request.trip });
 };
 

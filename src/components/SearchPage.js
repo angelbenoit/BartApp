@@ -12,6 +12,7 @@ class SearchPage extends Component {
         this.state = {
             live: false,
             schedule: false,
+            stationDetail: false,
             //stations for getting live information about a station, or
             //getting a route schedule with entry station and destination
             entry: "",
@@ -37,11 +38,14 @@ class SearchPage extends Component {
         //if user selects to view live incoming trains at a specific station,
         //set live to true and reset everything else
         if(selection === "live")
-            this.setState({ live: true, schedule: false, entry: "", destination: "", liveStation: "" });
+            this.setState({ live: true, schedule: false, stationDetail: false, entry: "", destination: "", liveStation: "" });
 
             //otherwise set schedule to true and reset everything else
+        else if(selection === "schedule")
+            this.setState({ live: false, schedule: true, stationDetail: false, entry: "", destination: "", liveStation: "" });
+
         else
-            this.setState({ live: false, schedule: true, entry: "", destination: "", liveStation: "" });
+            this.setState({ live: false, schedule: false, stationDetail: true, entry: "", destination: "", liveStation: "" });
     }
 
     getLiveStation(stationName){
@@ -92,7 +96,7 @@ class SearchPage extends Component {
         If neither are picked, nothing will be displayed
      */
     renderProperData(){
-        if(this.state.live)
+        if(this.state.live){
             return (
                 <div>
                     <h3>Live Schedule</h3>
@@ -108,7 +112,9 @@ class SearchPage extends Component {
                     }
                 </div>
             )
-        else if(this.state.schedule)
+        }
+
+        else if(this.state.schedule){
             return (
                 <div>
                     <h3>Schedule</h3>
@@ -129,6 +135,15 @@ class SearchPage extends Component {
                     }
                 </div>
             )
+        }
+
+        else if(this.state.stationDetail){
+            return(
+                <div>
+                    STATION DETAILS
+                </div>
+            )
+        }
     }
 
     render() {
@@ -160,6 +175,18 @@ class SearchPage extends Component {
                             Start by choosing a train station you will
                             arrive in, and choose a destination, then
                             pick what time you'd like to leave at.
+                        </p>
+                    </div>
+
+                    <div className="selection">
+                        <h4
+                            className="selection-pick"
+                            onClick={() => this.userSelection("stationDetail")}
+                        >
+                            View Train Details
+                        </h4>
+                        <p>
+                            Learn more about the train stations in the Bart system.
                         </p>
                     </div>
 
