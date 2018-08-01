@@ -42,6 +42,15 @@ class LandingPage extends Component {
                         </div>
 
                         <div className="landing__info--section">
+                            <h2><Icon name='info circle' size='large' /> Station Information</h2>
+                            <p>
+                                Learn more about the area around any bart station.
+                                See what restaurants, shopping areas, and other attractions
+                                around the location using Yelp.
+                            </p>
+                        </div>
+
+                        <div className="landing__info--section">
                             <h2><Icon name='warning sign' size='large' /> Alerts</h2>
                             <p>
                                 View any possible alerts and announcements coming from

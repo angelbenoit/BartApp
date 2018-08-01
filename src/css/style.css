@@ -58,7 +58,7 @@ html, body {
         flex-direction: column;
         padding: 3rem; } }
     .landing__info--section {
-      width: 25%;
+      width: 20%;
       text-align: center; }
       @media only screen and (max-width: 600px) {
         .landing__info--section {
@@ -123,13 +123,15 @@ html, body {
     .side-bar {
       flex-direction: row;
       width: 100%;
-      min-height: 20vh; } }
+      min-height: 20vh;
+      padding: 0; } }
   .side-bar .selection {
     padding: 1.5rem;
     padding-bottom: 4rem; }
     @media only screen and (max-width: 500px) {
       .side-bar .selection {
-        padding: 1rem; } }
+        padding: .5rem;
+        padding-bottom: 1rem; } }
   .side-bar .selection-pick {
     background-color: white;
     color: #3F444C;
