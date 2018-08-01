@@ -36,6 +36,7 @@ class SearchPage extends Component {
         //as soon as search page loads
         this.props.fetchStationList();
         this.props.fetchArrivingData();
+        this.props.fetchAdvisories();
     }
 
     userSelection(selection){
@@ -208,7 +209,9 @@ class SearchPage extends Component {
                             View Train Details
                         </h4>
                         <p>
-                            Learn more about the train stations in the Bart system.
+                            Learn more about the train stations in the Bart system,
+                            and view advisories such as delays or elevators out of
+                            service.
                         </p>
                     </div>
 

@@ -26,6 +26,28 @@ class StationData extends Component {
         )
     }
 
+    getAdvisories(){
+        const delays = [];
+        const elevators = [];
+
+        this.props.advisories[0].map(delay => {
+            delays.push(
+                <div>
+                    {delay.description['#cdata-section']}
+                </div>
+            )
+        })
+
+        this.props.advisories[1].map(elevator => {
+            elevators.push(
+                <div style={{"paddingTop": "2rem"}}>
+                    {elevator.description['#cdata-section']}
+                </div>
+            )
+        })
+        return [delays, elevators];
+    }
+
     getLink(objData) {
         let linkStart = objData.indexOf("http");
         let linkEnd = objData.indexOf(">yelp.com");
@@ -77,10 +99,16 @@ class StationData extends Component {
     render() {
         const test = this.getAttractions(this.props.additionalStationInfo)
         const renderedStationData = this.filterStationList(this.props.station);
+        const advisory = this.getAdvisories();
         return (
             <div className="station-data">
                 <div>
                     {renderedStationData}
+                </div>
+                <div className="advisories">
+                    <Icon name='warning circle' size='big' />
+                    {advisory[0]}
+                    {advisory[1]}
                 </div>
                 <div>
                     {test}
@@ -92,6 +120,7 @@ class StationData extends Component {
 
 function mapStateToProps(state) {
     return {
+        advisories: state.advisories,
         stationList: state.stations,
         additionalStationInfo: state.additionalStationInfo
     };

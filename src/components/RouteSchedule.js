@@ -4,6 +4,7 @@ import { Icon } from 'semantic-ui-react'
 import * as actions from '../actions';
 
 class RouteSchedule extends Component {
+
     getArrivingTrainData(line){
         //console.log(this.props.currentRoutes.root.routes.route);
         //filter the array of current routes with the route number passed in
@@ -109,7 +110,7 @@ function mapStateToProps(state) {
     return {
         routeList: state.route,
         stationList: state.stations,
-        currentRoutes: state.currentRoutes
+        currentRoutes: state.currentRoutes,
     };
 }
 

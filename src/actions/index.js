@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { FETCH_LIVE, FETCH_ROUTE,
          FETCH_STATION_LIST,
-         FETCH_CURRENT_ROUTE_DATA, FETCH_STATION_INFORMATION } from './types';
+         FETCH_CURRENT_ROUTE_DATA, FETCH_STATION_INFORMATION,
+         FETCH_ADVISORIES } from './types';
 
 //this function gets the incoming trains at a specific train station
 export const fetchLiveData = (station) => async (dispatch) => {
@@ -40,4 +41,16 @@ export const fetchAdditionalStationInfo = (station) => async (dispatch) => {
     const res = await axios.get(url);
 
     dispatch({type: FETCH_STATION_INFORMATION, payload: res.data });
+};
+
+export const fetchAdvisories = () => async (dispatch) => {
+    const delayUrl = `https://api.bart.gov/api/bsa.aspx?cmd=bsa&key=MW9S-E7SL-26DU-VV8V&json=y`;
+    const delayResponse = await axios.get(delayUrl);
+
+    const elevatorUrl = `https://api.bart.gov/api/bsa.aspx?cmd=elev&key=MW9S-E7SL-26DU-VV8V&json=y`;
+    const elevatorResponse = await axios.get(elevatorUrl);
+
+    const res = [delayResponse.data.root.bsa, elevatorResponse.data.root.bsa];
+    console.log(res);
+    dispatch({type: FETCH_ADVISORIES, payload: res });
 };
