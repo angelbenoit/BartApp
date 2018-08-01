@@ -49,6 +49,7 @@ class LiveStationData extends Component {
         //heading south
         const northBoundTrains = [];
         const southBoundTrains = [];
+        let endOfLine;
 
         arrivingSorted.map(item => {
             //console.log(item)
@@ -85,6 +86,11 @@ class LiveStationData extends Component {
                 southBoundTrains.push(data);
             else
                 northBoundTrains.push(data);
+
+            if(southBoundTrains.length == 0 || northBoundTrains == 0)
+                endOfLine = true;
+            else
+                endOfLine = false;
         });
 
         const renderedData = (
@@ -99,17 +105,26 @@ class LiveStationData extends Component {
                 </div>
             </div>
         )
-        return renderedData;
+        return [renderedData, endOfLine];
     }
     render() {
         //const stationName = this.props.liveStation.name;
         //console.log(this.props.liveStation)
-        console.log(this.getArriving());
+        const data = this.getArriving();
+        let endLine;
+        if(data[1]){
+            endLine = (
+                <div>
+                    <h4><Icon name='warning circle'size='large'/> End of the line, train now turning arround</h4>
+                </div>
+            )
+        }
         return (
             <div className="displayList">
                 <h2>Trains arriving in <em>{this.props.live.name}</em></h2>
+                <h3>{endLine ? endLine : ""}</h3>
                 <div>
-                    {this.getArriving()}
+                    {data[0]}
                 </div>
             </div>
         );
