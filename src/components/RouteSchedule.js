@@ -40,8 +40,12 @@ class RouteSchedule extends Component {
         //currentRoute displays the current route the item.leg.map is on
         //because there may be more than one route due to transfer routes
         let currentRoute = [];
+        let fareObject;
+        let fare = [];
 
         this.props.routeList.map(item => {
+            fareObject = item.fares.fare;
+            //console.log(fareObject)
             /*
                 Inside routeList there is an array property that contains all of the
                 route info. If the route does NOT require transfer, it will only have
@@ -82,15 +86,25 @@ class RouteSchedule extends Component {
                     </div>
                 );
             })
+
+            fareObject.map(fareItem => {
+                fare.push(<p>{fareItem['@name']}:  ${fareItem['@amount']}</p>);
+            });
+
             routeDisplay.push(
                 <div className="routeDisplay">
                     {isTransfer ? <h2><Icon name='warning circle' size='large' /> Transfer Route</h2> : ""}
+                    <div className="fares">
+                        <h5>Fares: &nbsp;</h5>
+                        {fare}
+                    </div>
                     { currentRoute }
                 </div>
             );
 
-            //reset currentRoute and isTransfer
+            //reset currentRoute, isTransfer, and fares list
             currentRoute = [];
+            fare = [];
             isTransfer = false;
         });
 
