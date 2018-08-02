@@ -115,7 +115,7 @@ class LiveStationData extends Component {
         if(data[1]){
             endLine = (
                 <div>
-                    <h4><Icon name='warning circle'size='large'/> End of the line, train now turning arround</h4>
+                    <h4><Icon name='warning circle'size='large'/> End of the line, train now turning around</h4>
                 </div>
             )
         }
